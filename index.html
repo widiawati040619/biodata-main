@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio - Widia Wati</title>
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,8 +29,9 @@
             </ul>
         </nav>
     </header>
+
     <div class="body-container">
-        <section id="about" class="profile"></section>
+        <section id="about" class="profile">
             <div class="profile-photo-container">
                 <img class="profile-photo" src="./img/mine.jpg" alt="My Photo" width="200">
                 <div class="profile-description">
@@ -28,6 +41,7 @@
                 </div>
             </div>
         </section>
+
         <section id="projects">
             <h2>Proyek</h2>
             <p>Berikut adalah proyek yang telah saya kerjakan:</p>
@@ -35,28 +49,102 @@
                 <li>Website Portofolio</li>
             </ul>
         </section>
+
         <section id="contact" class="form-section">
             <h2>Kontak</h2>
             <form class="contact-form">
                 <div class="form-group">
                     <label for="name" class="form-label">Nama:</label>
                     <input type="text" id="name" class="form-input">
+                    <div id="error-name" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="form-label">Email:</label>
                     <input type="email" id="email" class="form-input">
+                    <div id="error-email" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="form-label">No. Telepon:</label>
                     <input type="tel" id="phone" class="form-input">
+                    <div id="error-phone" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="age" class="form-label">Umur:</label>
+                    <input type="number" id="age" class="form-input">
+                    <div id="error-age" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label for="messages" class="form-label">Pesan:</label>
                     <textarea id="messages" class="form-textarea" rows="4" cols="50"></textarea>
+                    <div id="error-messages" class="error-message"></div>
                 </div>
                 <button type="submit" class="form-button">Kirim</button>
+                <div id="form-success"></div>
             </form>
         </section>
     </div>
+
+    <script>
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Bersihkan pesan error
+            document.getElementById('error-name').innerText = '';
+            document.getElementById('error-email').innerText = '';
+            document.getElementById('error-phone').innerText = '';
+            document.getElementById('error-age').innerText = '';
+            document.getElementById('error-messages').innerText = '';
+            document.getElementById('form-success').innerText = '';
+
+            // Ambil nilai input
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const age = parseInt(document.getElementById('age').value.trim(), 10);
+            const messages = document.getElementById('messages').value.trim();
+
+            let valid = true;
+
+            if (!name) {
+                document.getElementById('error-name').innerText = 'Nama tidak boleh kosong.';
+                valid = false;
+            }
+            if (!email.includes('@')) {
+                document.getElementById('error-email').innerText = 'Email harus mengandung @.';
+                valid = false;
+            }
+            if (!phone.match(/^[0-9]{10,15}$/)) {
+                document.getElementById('error-phone').innerText = 'Nomor telepon harus 10-15 digit angka.';
+                valid = false;
+            }
+            if (isNaN(age) || age < 13) {
+                document.getElementById('error-age').innerText = 'Umur minimal 13 tahun.';
+                valid = false;
+            }
+            if (!messages) {
+                document.getElementById('error-messages').innerText = 'Pesan tidak boleh kosong.';
+                valid = false;
+            }
+
+            if (valid) {
+                document.getElementById('form-success').innerText = `Halo, ${name}! Terima kasih sudah menghubungi.`;
+                document.getElementById('form-success').className = 'success';
+                this.reset();
+            }
+        });
+
+        function setTextareaCols() {
+            const textarea = document.getElementById('messages');
+            if (!textarea) return;
+            if (window.innerWidth <= 600) {
+                textarea.setAttribute('cols', 30);
+            } else {
+                textarea.setAttribute('cols', 50);
+            }
+        }
+
+        window.addEventListener('resize', setTextareaCols);
+        window.addEventListener('DOMContentLoaded', setTextareaCols);
+    </script>
 </body>
 </html>
