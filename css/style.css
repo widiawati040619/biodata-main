@@ -25,6 +25,7 @@ header {
   animation: slideDown 0.8s;
 }
 
+
 @keyframes slideDown {
   from { transform: translateY(-40px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
@@ -192,6 +193,16 @@ header {
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 4px 16px rgba(0,123,255,0.15);
 }
+.error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
 
 /* Responsive: Tablet */
 @media (max-width: 900px) {
