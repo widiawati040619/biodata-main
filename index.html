@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio - Widia Wati</title>
     <link rel="stylesheet" href="./css/style.css">
-
+    
 </head>
 <body>
     <header>
@@ -42,6 +42,8 @@
         <section id="contact" class="form-section">
             <h2>Kontak</h2>
             <form class="contact-form">
+                <div class="form-container">
+                <div class="form-container-grup">
                 <div class="form-group">
                     <label for="name" class="form-label">Nama:</label>
                     <input type="text" id="name" class="form-input">
@@ -52,6 +54,8 @@
                     <input type="email" id="email" class="form-input">
                     <div id="error-email" class="error-message"></div>
                 </div>
+                </div>
+                <div class="form-container-grup">
                 <div class="form-group">
                     <label for="phone" class="form-label">No. Telepon:</label>
                     <input type="tel" id="phone" class="form-input">
@@ -62,6 +66,8 @@
                     <input type="number" id="age" class="form-input">
                     <div id="error-age" class="error-message"></div>
                 </div>
+                </div>
+                </div>
                 <div class="form-group">
                     <label for="messages" class="form-label">Pesan:</label>
                     <textarea id="messages" class="form-textarea" rows="4" cols="50"></textarea>
@@ -71,7 +77,16 @@
                 <div id="form-success"></div>
             </form>
         </section>
+    <section id="to-do-list" class="to-do-list">
+  <h2>To-Do List</h2>
+  <div class="to-do-list-container">
+    <input type="text" id="tugas" placeholder="Masukkan tugas" class="tugas-input">
+    <button class="button-add" onclick="tambahTugas()">Tambah</button>
+    <ul class="daftar-tugas" id="daftar-tugas"></ul>
+  </div>
+</section>
     </div>
     <script src="./js/main.js"></script>
+    
 </body>
 </html>

@@ -55,6 +55,33 @@ document.querySelector('.contact-form').addEventListener('submit', function(e) {
                 textarea.setAttribute('cols', 50);
             }
         }
-
+        
         window.addEventListener('resize', setTextareaCols);
         window.addEventListener('DOMContentLoaded', setTextareaCols);
+
+        let listTugas = [];
+
+        function tambahTugas() {
+            let input = document.getElementById("tugas");
+            let tugasBaru = input.value;
+            if (tugasBaru.trim() === "") return;
+
+            listTugas.push({ nama: tugasBaru, selesai: false});
+            input.value = "";
+            renderTugas();
+        }
+        function renderTugas() {
+            let output = "";
+            for (let i = 0; i < listTugas.length; i++) {
+                let item = listTugas[i];
+                output += `<li>
+                    ${item.nama} ${item.selesai ? "(OK)" : ""}
+                    <button onclick="tandaiSelesai(${i})" ${item .selesai ? "disabled" : ""}>Selesai</button>
+                    </li>`;
+            }
+            document.getElementById("daftar-tugas").innerHTML = output;
+        }
+        function tandaiSelesai(index) {
+           listTugas[index].selesai = true;
+           renderTugas(); 
+        }
