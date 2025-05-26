@@ -85,3 +85,5 @@ document.querySelector('.contact-form').addEventListener('submit', function(e) {
            listTugas[index].selesai = true;
            renderTugas(); 
         }
+        
+        

@@ -171,15 +171,16 @@ header {
 
 .form-input,
 .form-textarea {
-  width: 90%;
+  width: 100%;
   padding: 16px;
   border: 1.5px solid #b6d4fe;
   border-radius: 8px;
   font-size: 1rem;
   background: #fff;
   transition: border 0.2s, box-shadow 0.2s;
-  width: 90%;
+  box-sizing: border-box;
 }
+
 
 .form-input:focus,
 .form-textarea:focus {
@@ -326,6 +327,11 @@ margin-top: 10px;
   background-color: #218838;
 }
 
+a.project-link {
+    color: blue;
+}
+
+
 /* Responsive: Tablet */
 @media (max-width: 900px) {
   .body-container {
@@ -336,6 +342,7 @@ margin-top: 10px;
     gap: 18px;
   }
 }
+
 
 /* Responsive: Mobile */
 @media (max-width: 700px) {
@@ -364,7 +371,9 @@ margin-top: 10px;
   .form-section {
     padding: 18px 6px;
   }
+  
 }
+
 
 /* Responsive: Small Mobile */
 @media (max-width: 480px) {
